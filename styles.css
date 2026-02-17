@@ -1,0 +1,36 @@
+/* --- Shorts removal (homepage + shelves) --- */
+
+/* Hide Shorts shelves directly */
+ytd-rich-shelf-renderer[is-shorts],
+ytd-reel-shelf-renderer {
+    display: none !important;
+}
+
+/* Hide sections that contain Shorts shelves */
+ytd-rich-section-renderer:has(ytd-reel-shelf-renderer),
+ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]) {
+    display: none !important;
+}
+
+/* --- Sidebar Shorts link (desktop guide) --- */
+
+/* Hide Shorts entry by URL (works in all languages) */
+ytd-guide-entry-renderer:has(a[href*="/shorts"]),
+ytd-mini-guide-entry-renderer:has(a[href*="/shorts"]) {
+    display: none !important;
+}
+
+/* --- Channel Shorts tab --- */
+tp-yt-paper-tab:has(a[href*="/shorts"]) {
+    display: none !important;
+}
+
+/* --- Mobile Shorts tab --- */
+ytm-pivot-bar-item-renderer:has(a[href*="/shorts"]) {
+    display: none !important;
+}
+
+/* --- Theater mode layout --- */
+ytd-watch-flexy[theater] {
+    --ytd-watch-flexy-width: 100% !important;
+}

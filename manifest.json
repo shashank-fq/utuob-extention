@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Enhancer",
+  "version": "1.2",
+  "description": "Shorts removal + smart zoom",
+
+  "permissions": ["tabs"],
+
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
