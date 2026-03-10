@@ -29,13 +29,13 @@
   "commands": {
     "toggle-shorts": {
       "suggested_key": {
-        "default": "Ctrl+Shift+S"
+        "default": "Alt+O"
       },
       "description": "Toggle Shorts visibility"
     },
     "toggle-study-mode": {
       "suggested_key": {
-        "default": "Ctrl+Shift+D"
+        "default": "Alt+S"
       },
       "description": "Toggle Smart Study Mode"
     }

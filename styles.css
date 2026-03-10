@@ -4,7 +4,8 @@
 
 /* ---------- Hide Shorts Mode ---------- */
 /* This runs only when JS adds: yt-hide-shorts */
-/* Hide Shorts everywhere */
+
+/* Hide Shorts links and shelves */
 .yt-hide-shorts a[href*="/shorts"],
 .yt-hide-shorts ytd-guide-entry-renderer:has(a[href*="/shorts"]),
 .yt-hide-shorts ytd-mini-guide-entry-renderer:has(a[href*="/shorts"]),
@@ -14,15 +15,34 @@
   display: none !important;
 }
 
+/* ---------- Hide Shorts in search results ---------- */
+
+/* Classic search result */
+.yt-hide-shorts ytd-video-renderer:has(a[href*="/shorts"]) {
+  display: none !important;
+}
+
+/* Grid results */
+.yt-hide-shorts ytd-grid-video-renderer:has(a[href*="/shorts"]) {
+  display: none !important;
+}
+
+/* Rich results (YouTube experiments) */
+.yt-hide-shorts ytd-rich-item-renderer:has(a[href*="/shorts"]) {
+  display: none !important;
+}
+
+
 /* ---------- Study Mode ---------- */
 /* Runs only when JS adds: yt-study-mode */
 
-/* Study Mode = hide distractions */
+/* Hide comments */
 .yt-study-mode #comments,
 .yt-study-mode ytd-comments {
   display: none !important;
 }
 
+/* Hide recommendations */
 .yt-study-mode #related,
 .yt-study-mode ytd-watch-next-secondary-results-renderer {
   display: none !important;
