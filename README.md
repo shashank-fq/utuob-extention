@@ -1,75 +1,151 @@
-# YouTube Enhancer Extension
+# YouTube Enhancer Extension (v2.1)
 
-A browser extension that enhances your YouTube experience with the following features:
+A lightweight productivity-focused browser extension that improves the YouTube experience with **custom zoom controls, Shorts blocking, and Smart Study Mode**.
+
+Built as a side project to make YouTube cleaner, more focused, and more customizable.
+---
 
 ## Features
 
-1. **Removes YouTube Shorts** - Hides all Shorts from the homepage and sidebar
-2. **Auto Theater Mode** - Automatically enables theater mode when watching videos
-3. **1080p Default Quality** - Sets video quality to 1080p by default (or highest available)
-4. **4-Column Video Layout** - Shows 4 videos per row on the homepage for better browsing (responsive on smaller screens)
-5. **Smart Zoom** - 80% zoom on homepage for more content visibility, 100% zoom on video pages for optimal viewing
+### ✅ Smart Zoom (User Controlled)
+
+Choose zoom levels directly from the popup:
+
+- **Home / Browsing Pages:** 100%, 80%, 75%, 60%
+- **Watch Pages (/watch):** 125%, 110%, 100%, 80%
+
+Zoom is applied automatically using Chrome’s official zoom API.
+---
+
+### ✅ Hide YouTube Shorts (Toggle)
+
+- Removes Shorts shelves from the homepage
+- Hides Shorts from the sidebar and tabs
+- Can be turned ON/OFF anytime
+
+
+### ✅ Auto Theater Mode
+
+Automatically enables Theater Mode when watching videos (optional toggle).
+---
+
+### ✅ Hover Expand Description
+
+When enabled:
+
+- Hover over the description for **0.3 seconds**
+- It expands automatically for easier reading
+
+### ✅ Smart Study Mode (Focus Mode)
+
+A distraction-free YouTube mode designed for learning:
+
+- Hides recommendations
+- Hides comments
+- Keeps only the video + description visible
+- Turns autoplay ON automatically if a playlist is active
+
+
+### ✅ Keyboard Shortcuts
+
+Quickly toggle features without opening the popup:
+
+| Shortcut | Action |
+|---------|--------|
+| **Ctrl + Shift + S** | Toggle Shorts visibility |
+| **Ctrl + Shift + D** | Toggle Smart Study Mode |
+
+(Shortcuts can be changed in Chrome settings.)
+---
 
 ## Installation
 
-### Chrome/Edge/Brave
+### Chrome / Edge / Brave
 
-1. Download all the extension files to a folder on your computer
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" (toggle in top-right corner)
-4. Click "Load unpacked"
-5. Select the folder containing the extension files
-6. The extension is now active!
+1. Download or clone this repository
+2. Open:
 
-### Firefox
+   `chrome://extensions/`
 
-1. Download all the extension files to a folder on your computer
-2. Open Firefox and go to `about:debugging#/runtime/this-firefox`
-3. Click "Load Temporary Add-on"
-4. Navigate to the folder and select the `manifest.json` file
-5. The extension is now active!
+3. Enable **Developer Mode** (top-right)
+4. Click **Load unpacked**
+5. Select the extension folder
 
-Note: In Firefox, temporary extensions are removed when you close the browser. For permanent installation, you would need to package and sign the extension.
+The extension is now active on YouTube.
+---
 
-## Files Included
+## Project Structure
 
-- `manifest.json` - Extension configuration
-- `content.js` - Main functionality script
-- `styles.css` - CSS to hide Shorts elements
-- `README.md` - This file
-- Icon files (optional - you can add your own or the extension will work without them)
+youtube-enhancer/
+│ manifest.json # Extension configuration
+│ background.js # Zoom + keyboard shortcut handler
+│ content.js # Shorts + Theater + Study Mode logic
+│ styles.css # Shorts + Study Mode styling
+│ popup.html # Popup UI
+│ popup.js # Popup logic + saving settings
+│ popup.css # Popup styling
+│ icon16.png
+│ icon48.png
+│ icon128.png
+│ README.md
+---
 
 ## How It Works
 
-- **Shorts Removal**: Uses CSS and JavaScript to hide Shorts shelves and continuously monitors the page for new Shorts content
-- **Theater Mode**: Automatically clicks the theater mode button when a video loads
-- **Quality Setting**: Attempts to set video quality through YouTube's player controls
-- **4-Column Layout**: Uses CSS Grid to display 4 videos per row on the homepage (automatically adjusts to 3, 2, or 1 column on smaller screens)
-- **Smart Zoom**: Detects page type and applies 80% zoom on homepage/feeds for better overview, and 100% zoom on video pages to prevent player issues
+### Smart Zoom
+- Uses `chrome.tabs.setZoom()` from the background service worker  
+- Applies different zoom for watch pages vs browsing pages
+
+### Shorts Blocking
+- Uses CSS selectors inside `.yt-hide-shorts`
+- Toggleable via popup or shortcut
+
+### Smart Study Mode
+- Adds a `.yt-study-mode` class to the page
+- Hides distractions like comments and recommendations
+
+### SPA Support
+YouTube is a Single Page App, so the extension detects URL changes and re-applies features automatically.
+---
 
 ## Customization
 
-You can modify the extension behavior by editing the files:
+You can extend this project easily:
 
-- **Change number of columns**: Edit `styles.css` - change `repeat(4, 1fr)` to `repeat(5, 1fr)` for 5 columns, `repeat(3, 1fr)` for 3 columns, etc.
-- **Change zoom levels**: Edit `content.js` - in the `setZoomByPage()` function, change `'80%'` for homepage or `'100%'` for video pages to your preferred values
-- **Change default quality**: Edit `content.js` - look for `'1080'` and change to `'720'`, `'1440'`, `'2160'` (4K), etc.
-- **Disable specific features**: Comment out the relevant function calls in `content.js`
+- Add more zoom presets
+- Add “Focus Preset” button
+- Add quality control / playback speed defaults
+- Add channel whitelist mode
 
 ## Troubleshooting
 
-- **Theater mode not working**: YouTube's interface can change. The extension may need updates to match new selectors
-- **Quality not setting**: Some videos may not have 1080p available. The extension will try to select the highest quality available
-- **Shorts still appearing**: YouTube's structure changes frequently. Clear your browser cache and reload the extension
+### Zoom not applying?
+- Close and reopen YouTube tabs after reload
+- Reset zoom overrides in:
+
+  `chrome://settings/content/zoomLevels`
+
+### Shorts still visible?
+YouTube updates its UI frequently, selectors may need updates.
+---
 
 ## Privacy
 
 This extension:
-- Only runs on youtube.com
-- Does not collect any data
-- Does not make external network requests
-- All processing happens locally in your browser
+
+- Runs only on `youtube.com`
+- Stores settings locally using `chrome.storage.sync`
+- Does NOT collect or transmit any user data
+- Makes no external network requests
 
 ## License
 
-Free to use and modify as needed.
+Free to use, modify, and improve as a personal side project.
+---
+
+## Roadmap (Planned Improvements)
+
+- Cleaner Study Mode layout (true minimal view)
+- Preset profiles: Normal / Focus / Study
+- Better popup UI design
+- Chrome Web Store release

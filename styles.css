@@ -1,36 +1,29 @@
-/* --- Shorts removal (homepage + shelves) --- */
+/* ============================= */
+/* YouTube Enhancer - Styles     */
+/* ============================= */
 
-/* Hide Shorts shelves directly */
-ytd-rich-shelf-renderer[is-shorts],
-ytd-reel-shelf-renderer {
-    display: none !important;
+/* ---------- Hide Shorts Mode ---------- */
+/* This runs only when JS adds: yt-hide-shorts */
+/* Hide Shorts everywhere */
+.yt-hide-shorts a[href*="/shorts"],
+.yt-hide-shorts ytd-guide-entry-renderer:has(a[href*="/shorts"]),
+.yt-hide-shorts ytd-mini-guide-entry-renderer:has(a[href*="/shorts"]),
+.yt-hide-shorts ytd-reel-shelf-renderer,
+.yt-hide-shorts ytd-rich-shelf-renderer[is-shorts],
+.yt-hide-shorts ytd-rich-section-renderer:has(ytd-reel-shelf-renderer) {
+  display: none !important;
 }
 
-/* Hide sections that contain Shorts shelves */
-ytd-rich-section-renderer:has(ytd-reel-shelf-renderer),
-ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]) {
-    display: none !important;
+/* ---------- Study Mode ---------- */
+/* Runs only when JS adds: yt-study-mode */
+
+/* Study Mode = hide distractions */
+.yt-study-mode #comments,
+.yt-study-mode ytd-comments {
+  display: none !important;
 }
 
-/* --- Sidebar Shorts link (desktop guide) --- */
-
-/* Hide Shorts entry by URL (works in all languages) */
-ytd-guide-entry-renderer:has(a[href*="/shorts"]),
-ytd-mini-guide-entry-renderer:has(a[href*="/shorts"]) {
-    display: none !important;
-}
-
-/* --- Channel Shorts tab --- */
-tp-yt-paper-tab:has(a[href*="/shorts"]) {
-    display: none !important;
-}
-
-/* --- Mobile Shorts tab --- */
-ytm-pivot-bar-item-renderer:has(a[href*="/shorts"]) {
-    display: none !important;
-}
-
-/* --- Theater mode layout --- */
-ytd-watch-flexy[theater] {
-    --ytd-watch-flexy-width: 100% !important;
+.yt-study-mode #related,
+.yt-study-mode ytd-watch-next-secondary-results-renderer {
+  display: none !important;
 }

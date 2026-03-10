@@ -1,14 +1,12 @@
 {
   "manifest_version": 3,
   "name": "YouTube Enhancer",
-  "version": "1.2",
-  "description": "Shorts removal + smart zoom",
+  "version": "2.1",
+  "description": "Custom zoom + Shorts blocker + Study Mode for YouTube",
 
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage", "commands"],
 
-  "host_permissions": [
-    "https://www.youtube.com/*"
-  ],
+  "host_permissions": ["https://www.youtube.com/*"],
 
   "background": {
     "service_worker": "background.js"
@@ -18,9 +16,30 @@
     {
       "matches": ["https://www.youtube.com/*"],
       "js": ["content.js"],
-      "css": ["styles.css"]
+      "css": ["styles.css"],
+      "run_at": "document_idle"
     }
   ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "YouTube Enhancer"
+  },
+
+  "commands": {
+    "toggle-shorts": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Toggle Shorts visibility"
+    },
+    "toggle-study-mode": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D"
+      },
+      "description": "Toggle Smart Study Mode"
+    }
+  },
 
   "icons": {
     "16": "icon16.png",
