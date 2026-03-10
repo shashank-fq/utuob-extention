@@ -52,8 +52,8 @@ Quickly toggle features without opening the popup:
 
 | Shortcut | Action |
 |---------|--------|
-| **Ctrl + Shift + S** | Toggle Shorts visibility |
-| **Ctrl + Shift + D** | Toggle Smart Study Mode |
+| **Alt + O** | Toggle Shorts visibility |
+| **Alt + S** | Toggle Smart Study Mode |
 
 (Shortcuts can be changed in Chrome settings.)
 ---
