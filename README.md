@@ -142,10 +142,3 @@ This extension:
 
 Free to use, modify, and improve as a personal side project.
 ---
-
-## Roadmap (Planned Improvements)
-
-- Cleaner Study Mode layout (true minimal view)
-- Preset profiles: Normal / Focus / Study
-- Better popup UI design
-- Chrome Web Store release
