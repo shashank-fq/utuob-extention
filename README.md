@@ -52,8 +52,8 @@ Quickly toggle features without opening the popup:
 
 | Shortcut | Action |
 |---------|--------|
-| **Ctrl + Shift + S** | Toggle Shorts visibility |
-| **Ctrl + Shift + D** | Toggle Smart Study Mode |
+| **Alt + O** | Toggle Shorts visibility |
+| **Alt + S** | Toggle Smart Study Mode |
 
 (Shortcuts can be changed in Chrome settings.)
 ---
@@ -142,10 +142,3 @@ This extension:
 
 Free to use, modify, and improve as a personal side project.
 ---
-
-## Roadmap (Planned Improvements)
-
-- Cleaner Study Mode layout (true minimal view)
-- Preset profiles: Normal / Focus / Study
-- Better popup UI design
-- Chrome Web Store release
