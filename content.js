@@ -11,7 +11,7 @@
 
 let shortsEnabled = true;
 let studyEnabled = false;
-//let hoverSetupDone = false;
+let hoverSetupDone = false;
 
 // IMPORTANT: Prevent multiple intervals from being created
 let enforceIntervalStarted = false;
@@ -23,7 +23,7 @@ async function getSettings() {
   return await chrome.storage.sync.get({
     hideShorts: true,
     autoTheater: true,
-    //hoverExpand: false,
+    hoverExpand: false,
     studyMode: false
   });
 }
@@ -85,52 +85,50 @@ function enableTheaterMode() {
 }
 
 
-/* ---------- Hover Expand Description ---------- *
+
+/* ---------- Hover Expand Description ---------- */
 
 function setupHoverExpand() {
-  if (hoverSetupDone) return;
-  hoverSetupDone = true;
+  // Look for YouTube's modern description elements
+  const desc = document.querySelector("ytd-watch-metadata #description, ytd-text-inline-expander");
+  
+  // If the description hasn't loaded yet, try again in 500ms and exit for now
+  if (!desc) {
+    setTimeout(setupHoverExpand, 500);
+    return;
+  }
 
-  const desc = document.querySelector("#description");
-  if (!desc) return;
+  // If we already attached the hover effect to this specific element, do nothing
+  if (desc.dataset.hoverBound) return;
+  desc.dataset.hoverBound = "true";
 
   let expandTimer;
   let shrinkTimer;
 
   function expandDescription() {
-    const moreBtn =
-      document.querySelector("#description #expand") ||
-      desc.querySelector("tp-yt-paper-button#expand");
-
-    if (moreBtn) moreBtn.click();
+    const moreBtn = desc.querySelector("#expand");
+    // Ensure the button actually exists and is visible before clicking
+    if (moreBtn && moreBtn.offsetParent !== null) moreBtn.click();
   }
 
   function shrinkDescription() {
-    const lessBtn =
-      document.querySelector("#description #collapse") ||
-      desc.querySelector("tp-yt-paper-button#collapse");
-
-    if (lessBtn) lessBtn.click();
+    const lessBtn = desc.querySelector("#collapse");
+    // Ensure the button actually exists and is visible before clicking
+    if (lessBtn && lessBtn.offsetParent !== null) lessBtn.click();
   }
 
   // Hover 0.3s → Expand
   desc.addEventListener("mouseenter", () => {
     clearTimeout(shrinkTimer);
-
-    expandTimer = setTimeout(() => {
-      expandDescription();
-    }, 300);
+    expandTimer = setTimeout(expandDescription, 150);
   });
 
   // Leave 0.5s → Shrink
   desc.addEventListener("mouseleave", () => {
     clearTimeout(expandTimer);
-
-    shrinkTimer = setTimeout(() => {
-      shrinkDescription();
-    }, 500);
+    shrinkTimer = setTimeout(shrinkDescription, 300);
   });
-}*/
+}
 
 
 /* ---------- Smart Study Mode ---------- */
@@ -187,9 +185,9 @@ async function applyFeatures() {
       setTimeout(enableTheaterMode, 800);
     }
 
-    // if (settings.hoverExpand) {
-    //   setTimeout(setupHoverExpand, 1200);
-    // }
+    if (settings.hoverExpand) {
+      setTimeout(setupHoverExpand, 1200);
+    }
   }
 }
 
@@ -203,7 +201,7 @@ new MutationObserver(() => {
     lastUrl = location.href;
 
     // Reset hover setup because description element changes
-    //hoverSetupDone = false;
+    hoverSetupDone = false;
 
     // Apply features multiple times (YouTube loads in phases)
     applyFeatures();

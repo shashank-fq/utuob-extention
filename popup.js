@@ -4,7 +4,7 @@ async function loadSettings() {
     watchZoom: 100,
     hideShorts: true,
     autoTheater: true,
-    //hoverExpand: false,
+    hoverExpand: false,
     studyMode: false
   });
 
@@ -13,7 +13,7 @@ async function loadSettings() {
 
   hideShorts.checked = settings.hideShorts;
   autoTheater.checked = settings.autoTheater;
-  //hoverExpand.checked = settings.hoverExpand;
+  hoverExpand.checked = settings.hoverExpand;
   studyMode.checked = settings.studyMode;
 }
 
@@ -24,7 +24,7 @@ async function saveSettings() {
 
     hideShorts: hideShorts.checked,
     autoTheater: autoTheater.checked,
-    //hoverExpand: hoverExpand.checked,
+    hoverExpand: hoverExpand.checked,
     studyMode: studyMode.checked
   });
 

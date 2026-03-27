@@ -47,3 +47,11 @@
 .yt-study-mode ytd-watch-next-secondary-results-renderer {
   display: none !important;
 }
+
+/* Smooth Hover Expansion */
+ytd-watch-metadata #description,
+ytd-text-inline-expander,
+ytd-text-inline-expander * {
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out !important;
+  will-change: max-height;
+}
