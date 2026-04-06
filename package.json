@@ -1,0 +1,21 @@
+{
+  "name": "youtube-enhancer",
+  "version": "1.0.0",
+  "description": "A lightweight productivity-focused browser extension that improves the YouTube experience with **custom zoom controls, Shorts blocking, and Smart Study Mode**.",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shashank-fq/utuob-extention.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shashank-fq/utuob-extention/issues"
+  },
+  "homepage": "https://github.com/shashank-fq/utuob-extention#readme"
+}
